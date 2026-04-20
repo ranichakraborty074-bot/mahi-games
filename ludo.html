@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mahi's Royal Ludo 🎲</title>
+    <style>
+        body { background: #121212; color: #ff69b4; text-align: center; font-family: 'Segoe UI', sans-serif; }
+        .board { width: 300px; height: 300px; margin: 20px auto; border: 5px solid #ff69b4; display: grid; grid-template-columns: repeat(2, 1fr); border-radius: 10px; }
+        .house { height: 150px; border: 1px solid #333; display: flex; align-items: center; justify-content: center; font-size: 50px; }
+        .red { background: #ff4d4d; } .blue { background: #4d4dff; } .green { background: #4dff4d; } .yellow { background: #ffff4d; }
+        #dice-btn { padding: 15px 30px; font-size: 20px; background: #ff69b4; color: white; border: none; border-radius: 50px; cursor: pointer; box-shadow: 0 4px #c71585; }
+        #dice-btn:active { box-shadow: 0 2px #c71585; transform: translateY(2px); }
+        #res { font-size: 24px; margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Mahi Royal Ludo 🎲</h1>
+    <div class="board">
+        <div class="house red">🏠</div><div class="house blue">🏠</div>
+        <div class="house green">🏠</div><div class="house yellow">🏠</div>
+    </div>
+    <button id="dice-btn" onclick="rollDice()">ROLL DICE 🎲</button>
+    <p id="res">Chalo shuru karo! 💅</p>
+    <script>
+        function rollDice() {
+            const n = Math.floor(Math.random() * 6) + 1;
+            const emojis = ['','⚀','⚁','⚂','⚃','⚄','⚅'];
+            document.getElementById('res').innerText = "Result: " + emojis[n] + " (" + n + ")";
+        }
+    </script>
+</body>
+</html>
