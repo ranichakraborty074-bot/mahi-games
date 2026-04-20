@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mahi's Battle Arena ⚔️</title>
+    <style>
+        body { background: #000; color: #ff69b4; text-align: center; font-family: 'Courier New', monospace; }
+        .arena { border: 3px solid #ff1493; padding: 20px; display: inline-block; margin-top: 40px; border-radius: 15px; background: #111; }
+        .stats { font-size: 22px; margin-bottom: 20px; color: #00ff00; text-shadow: 0 0 5px #00ff00; }
+        button { padding: 15px 40px; background: #ff1493; color: white; border: none; font-size: 18px; font-weight: bold; cursor: pointer; border-radius: 50px; box-shadow: 0 5px #8b0000; }
+        button:active { box-shadow: 0 2px #8b0000; transform: translateY(3px); }
+        #log { margin-top: 20px; font-size: 16px; color: #ddd; min-height: 40px; }
+    </style>
+</head>
+<body>
+    <h1>⚔️ MULTIPLAYER BATTLE ⚔️</h1>
+    <div class="arena">
+        <div class="stats">
+            P1: <span id="p1Hp">100</span> HP | P2: <span id="p2Hp">100</span> HP
+        </div>
+        <div id="turnInfo" style="color: yellow; margin-bottom: 10px;">Player 1 Start! 🔥</div>
+        <button id="atkBtn" onclick="doAttack()">ATTACK! 💥</button>
+        <div id="log">Battle shuru karo vello! 💅</div>
+    </div>
+    <script>
+        let p1 = 100, p2 = 100, turn = 1;
+        function doAttack() {
+            let dmg = Math.floor(Math.random() * 20) + 10;
+            if (turn === 1) {
+                p2 = Math.max(0, p2 - dmg);
+                document.getElementById('p2Hp').innerText = p2;
+                document.getElementById('log').innerText = "Player 1 ne Player 2 ko " + dmg + " damage diya!";
+                turn = 2;
+                document.getElementById('turnInfo').innerText = "Ab Player 2 ki baari! ⚔️";
+            } else {
+                p1 = Math.max(0, p1 - dmg);
+                document.getElementById('p1Hp').innerText = p1;
+                document.getElementById('log').innerText = "Player 2 ne Player 1 ki dhulai ki! (-" + dmg + ")";
+                turn = 1;
+                document.getElementById('turnInfo').innerText = "Ab Player 1 ki baari! ⚔️";
+            }
+            if (p1 <= 0 || p2 <= 0) {
+                document.getElementById('atkBtn').disabled = true;
+                let win = p1 <= 0 ? "Player 2" : "Player 1";
+                document.getElementById('turnInfo').innerText = "🏆 WINNER: " + win;
+                document.getElementById('turnInfo').style.color = "lime";
+            }
+        }
+    </script>
+</body>
+</html>
